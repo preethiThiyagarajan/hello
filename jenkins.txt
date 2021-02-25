@@ -1,16 +1,13 @@
 pipeline {
     agent any
     
-    stages {
-        stage('Ok') {
-            steps {
-                echo "Ok"
-            }
-        }
-    }
-    post {
-        always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-        }
-    }
+ stage('Deploy') { 
+
+steps { 
+
+input('Continue to Deploy?') 
+bat 'mvn deploy -DmuleDeploy' 
+}
+
+ } 
 }
