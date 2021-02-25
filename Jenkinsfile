@@ -7,10 +7,15 @@ pipeline {
                 echo "Ok"
             }
         }
+
+stage('Deploy') {
+
+ steps { 
+
+  input('Continue to Deploy?')
+  bat 'mvn deploy -DmuleDeploy'
+ } 
+} 
     }
-    post {
-        always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
-        }
-    }
+  
 }
