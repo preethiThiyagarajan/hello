@@ -14,12 +14,22 @@ stage('Deploy') {
 
   timeout(time: 100, unit: 'SECONDS')
 
+{
+
   input('Continue to Deploy?')
+
+}
 
   bat 'mvn deploy -DmuleDeploy'
 
- } 
 } 
-    }
+} 
+
+}
   
 }
+
+
+
+
+
